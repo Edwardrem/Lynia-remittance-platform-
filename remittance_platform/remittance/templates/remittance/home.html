@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Home</h1>
+    <ul>
+        {% for transaction in transactions %}
+            <li>
+                {{ transaction.sender }} sent {{ transaction.amount }} {{ transaction.currency }} to {{ transaction.recipient }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

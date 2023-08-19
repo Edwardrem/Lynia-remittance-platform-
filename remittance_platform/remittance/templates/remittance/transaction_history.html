@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Transaction History</h1>
+    <ul>
+        {% for transaction in transactions %}
+            <li>
+                {{ transaction.sender }} sent {{ transaction.amount }} {{ transaction.currency }} to {{ transaction.recipient }} on {{ transaction.created_at }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
