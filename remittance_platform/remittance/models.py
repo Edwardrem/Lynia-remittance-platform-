@@ -11,13 +11,11 @@ class User(models.Model):
 
 
 class Transaction(models.Model):
-    sender_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    recipient_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    sender = models.CharField(max_length=255)
+    recipient = models.CharField(max_length=255)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     currency = models.CharField(max_length=3)
-    status = models.CharField(max_length=10)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=20)
 
 
 class TransactionHistory(models.Model):
