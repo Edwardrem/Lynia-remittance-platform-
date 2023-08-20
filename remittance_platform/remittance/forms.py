@@ -3,6 +3,7 @@ from remittance.models import Transaction
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.contrib.auth import authenticate
+from remittance.models import Transaction
 
 class CreateTransactionForm(forms.Form):
     sender = forms.CharField(max_length=255)
@@ -86,4 +87,9 @@ class ResetPasswordForm(forms.Form):
             raise forms.ValidationError('Passwords do not match.')
 
         return new_password2
+    
+class TransactionForm(ModelForm):
+    class Meta:
+        model = Transaction
+        fields = ['sender', 'recipient', 'amount', 'currency', 'status']
 
