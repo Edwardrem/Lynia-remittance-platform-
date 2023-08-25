@@ -10,7 +10,7 @@ class User(models.Model):
     last_name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=10)
 
-class User(AbstractUser):
+class RemittanceUser(AbstractUser):
     password1 = models.CharField(max_length=128, verbose_name='password',
                                    help_text='<ul><li>Your password must be at least 8 characters long.</li>'
                                                '<li>Your password must contain at least one uppercase letter.</li>'
