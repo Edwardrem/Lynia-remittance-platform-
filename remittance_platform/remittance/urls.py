@@ -10,4 +10,5 @@ urlpatterns = [
     path('update-transaction-status/', views.update_transaction_status, name='update_transaction_status'),
     #path('update-transaction-status/<int:transaction_id>/', views.update_transaction_status, name='update_transaction_status'),
     path('login/', views.login, name='login'),
+    path('register/', views.register, name='register'),
 ]
