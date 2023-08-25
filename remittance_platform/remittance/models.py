@@ -19,9 +19,16 @@ class Transaction(models.Model):
 
 
 class TransactionHistory(models.Model):
-    transaction_id = models.ForeignKey(Transaction, on_delete=models.CASCADE)
-    sender_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    recipient_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    sender = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='transactionhistory_senders',
+    )
+    recipient = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='transactionhistory_recipients',
+    )
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     currency = models.CharField(max_length=3)
     status = models.CharField(max_length=10)

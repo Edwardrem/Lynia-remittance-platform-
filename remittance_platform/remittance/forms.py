@@ -13,7 +13,7 @@ class CreateTransactionForm(forms.Form):
 
 class TransactionHistoryForm(ModelForm):
     class Meta:
-        model = Transactions
+        model = Transaction
         fields = ['sender', 'recipient', 'amount', 'currency', 'status']
 
 class UpdateTransactionStatusForm(ModelForm):
