@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
 class User(models.Model):
@@ -16,6 +17,10 @@ class User(models.Model):
                                                '<li>Your password must contain at least one special character.</li></ul>')
     password2 = models.CharField(max_length=128, verbose_name='password confirmation',
                                    help_text='Enter the same password as above, for verification.')
+
+
+
+    
 
 
 class Transaction(models.Model):
