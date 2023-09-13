@@ -57,13 +57,13 @@ class RegisterForm(forms.ModelForm):
         return email
 
     def clean_password2(self):
-        password1 = self.cleaned_data['password1']
-        password2 = self.cleaned_data['password2']
+        new_password1 = self.cleaned_data['password1']
+        new_password2 = self.cleaned_data['password2']
 
-        if password1 != password2:
+        if new_password1 != new_password2:
             raise forms.ValidationError('Passwords do not match.')
 
-        return password2
+        return new_password2
     
 class ForgotPasswordForm(forms.Form):
     email = forms.EmailField(max_length=255)

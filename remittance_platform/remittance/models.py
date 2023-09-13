@@ -11,13 +11,13 @@ class User(models.Model):
     phone_number = models.CharField(max_length=10)
 
 class RemittanceUser(AbstractUser):
-    password1 = models.CharField(max_length=128, verbose_name='password',
+    new_password1 = models.CharField(max_length=128, verbose_name='password',
                                    help_text='<ul><li>Your password must be at least 8 characters long.</li>'
                                                '<li>Your password must contain at least one uppercase letter.</li>'
                                                '<li>Your password must contain at least one lowercase letter.</li>'
                                                '<li>Your password must contain at least one number.</li>'
                                                '<li>Your password must contain at least one special character.</li></ul>')
-    password2 = models.CharField(max_length=128, verbose_name='password confirmation',
+    new_password2 = models.CharField(max_length=128, verbose_name='password confirmation',
                                    help_text='Enter the same password as above, for verification.')
 
 
