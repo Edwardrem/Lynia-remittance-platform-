@@ -16,6 +16,21 @@ class TransactionHistoryForm(ModelForm):
         model = Transaction
         fields = ['sender', 'recipient', 'amount', 'currency', 'status']
 
+class TransactionStatusForm(ModelForm):
+    class Meta:
+        model = Transaction
+        fields = ['transaction_status']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['transaction_status'].choices = [
+            ('initiated', 'Initiated'),
+            ('in_progress', 'In Progress'),
+            ('completed', 'Completed'),
+            ('cancelled', 'Cancelled'),
+        ]
+
+        
 class UpdateTransactionStatusForm(ModelForm):
     class Meta:
         model = Transaction
