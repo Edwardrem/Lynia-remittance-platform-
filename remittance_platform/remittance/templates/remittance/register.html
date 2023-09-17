@@ -5,8 +5,8 @@
     <form action="" method="POST">
         {% csrf_token %}
         <input type="text" name="username" placeholder="Username">
-        <input type="password" name="password1" placeholder="Password">
-        <input type="password" name="password2" placeholder="Confirm password">
+        <input type="password" name="new_password1" placeholder="Password">
+        <input type="password" name="new_password2" placeholder="Confirm password">
         <input type="submit" value="Register">
     </form>
 {% endblock %}

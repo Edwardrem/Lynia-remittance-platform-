@@ -1,6 +1,7 @@
 from django import forms
 from remittance.models import Transaction
 from django.contrib.auth.models import User
+from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth import authenticate
 from remittance.models import Transaction
@@ -55,7 +56,7 @@ class LoginForm(forms.Form):
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'new_password1', 'new_password2']
 
     def clean_username(self):
         username = self.cleaned_data['username']
