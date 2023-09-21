@@ -9,8 +9,6 @@ class User(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=10)
-
-class RemittanceUser(AbstractUser):
     new_password1 = models.CharField(max_length=128, verbose_name='password',
                                    help_text='<ul><li>Your password must be at least 8 characters long.</li>'
                                                '<li>Your password must contain at least one uppercase letter.</li>'
@@ -19,6 +17,19 @@ class RemittanceUser(AbstractUser):
                                                '<li>Your password must contain at least one special character.</li></ul>')
     new_password2 = models.CharField(max_length=128, verbose_name='password confirmation',
                                    help_text='Enter the same password as above, for verification.')
+
+class User(AbstractUser):
+    REQUIRED_FIELDS = ['email']
+
+#class RemittanceUser(AbstractUser):
+#   new_password1 = models.CharField(max_length=128, verbose_name='password',
+#                                  help_text='<ul><li>Your password must be at least 8 characters long.</li>'
+#                                               '<li>Your password must contain at least one uppercase letter.</li>'
+#                                               '<li>Your password must contain at least one lowercase letter.</li>'
+#                                               '<li>Your password must contain at least one number.</li>'
+#                                               '<li>Your password must contain at least one special character.</li></ul>')
+#   new_password2 = models.CharField(max_length=128, verbose_name='password confirmation',
+#                                  help_text='Enter the same password as above, for verification.')
 
 
 
