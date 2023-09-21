@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth import authenticate
+from django.contrib.auth import get_user_model
 from remittance.models import Transaction
 
 class CreateTransactionForm(forms.Form):

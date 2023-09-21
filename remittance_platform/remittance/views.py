@@ -5,6 +5,10 @@ from django.forms import ModelForm
 from django.contrib.auth import authenticate
 from remittance.models import Transaction
 from .forms import TransactionForm
+from .forms import RegisterForm
+from .forms import TransactionStatusForm
+from django.shortcuts import redirect
+
 # Create your views here.
 def home(request):
     transactions = Transaction.objects.all()
@@ -91,7 +95,7 @@ def logout(request):
 def register(request):
     if request.method == 'POST':
         # Get the form data from the request
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
 
         # Validate the form data
         if form.is_valid():
@@ -102,10 +106,10 @@ def register(request):
             login(request, user)
 
             # Redirect the user to the home page
-            return redirect('home')
+            return RegisterForm('home')
     else:
         # The form hasn't been submitted yet, so show it to the user
-        form = UserCreationForm()
+        form = RegisterForm()
 
     return render(request, 'remittance/register.html', {
         'form': form,
