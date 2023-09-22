@@ -8,6 +8,12 @@ from .forms import TransactionForm
 from .forms import RegisterForm
 from .forms import TransactionStatusForm
 from django.shortcuts import redirect
+from stellar_sdk import TransactionBuilder, Network, Asset
+from stellar_sdk.exceptions import BaseHorizonError
+from stellar_sdk import Keypair
+from django.conf import settings
+from utils.stellar_utils import server
+
 
 # Create your views here.
 def home(request):
@@ -93,6 +99,10 @@ def logout(request):
     return redirect('home')
 
 def register(request):
+
+    keypair = Keypair.random()
+    public_key = keypair.public_key
+    secret_key = keypair.secret
     if request.method == 'POST':
         # Get the form data from the request
         form = RegisterForm(request.POST)
@@ -115,4 +125,24 @@ def register(request):
         'form': form,
     })
 
+
+def send_transaction(request):
+    # your send transaction logic here
+    source_keypair = Keypair.from_secret(request.user.secret_key)
+    destination_public_key = request.POST['destination_public_key']
+    amount = request.POST['amount']
+    asset = Asset.native()
+    transaction = (
+        TransactionBuilder(
+            source_account=server.load_account(source_keypair.public_key),
+            network_passphrase=settings.STELLAR_NETWORK_PASSPHRASE,
+            base_fee=server.fetch_base_fee(),
+        )
+        .append_payment_op(destination_public_key, amount, asset)
+        .set_timeout(30)
+        .build()
+    )
+    transaction.sign(source_keypair)
+    response = server.submit_transaction(transaction)
+    # handle response
 

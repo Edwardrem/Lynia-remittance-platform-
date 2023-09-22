@@ -129,3 +129,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'remittance.User'
 
+STELLAR_NETWORK_PASSPHRASE = 'Public Global Stellar Network ; September 2015'
+STELLAR_HORIZON_URL = 'https://horizon.stellar.org'
+
