@@ -12,7 +12,7 @@ from stellar_sdk import TransactionBuilder, Network, Asset
 from stellar_sdk.exceptions import BaseHorizonError
 from stellar_sdk import Keypair
 from django.conf import settings
-from utils.stellar_utils import server
+from .stellar_utils import server
 
 
 # Create your views here.
