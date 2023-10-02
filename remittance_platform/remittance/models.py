@@ -8,14 +8,7 @@ class User(AbstractUser):
     groups = models.ManyToManyField(Group, through='User_groups', related_name='users')
     user_permissions = models.ManyToManyField(Permission, through='User_user_permissions', related_name='users')
 
-class User(models.Model):
-    name = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=255)
-    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    payment_address = models.CharField(max_length=255, blank=True, null=True)
-    payment_request_id = models.CharField(max_length=255, blank=True, null=True)
-    
+
 class Transaction(models.Model):
     sender = models.CharField(max_length=255)
     recipient = models.CharField(max_length=255)
