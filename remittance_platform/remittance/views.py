@@ -13,9 +13,6 @@ from stellar_sdk.exceptions import BaseHorizonError
 from stellar_sdk import Keypair
 from django.conf import settings
 from .stellar_utils import server
-from remittance.models import User
-from .coinbase_utils import create_payment_request, generate_payment_address, check_payment_status
-from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -149,25 +146,3 @@ def send_transaction(request):
     response = server.submit_transaction(transaction)
     # handle response
 
-def deposit_funds(request):
-    user_id = request.user.id
-    user = User.objects.get(id=user_id)
-    amount = request.POST['amount']
-    currency = request.POST['currency']
-    payment_request_id = create_payment_request(amount, currency, user_id)
-    payment_address = generate_payment_address(payment_request_id)
-    user.payment_address = payment_address
-    user.save()
-    return render(request, 'remittance/deposit_funds.html', {
-        'payment_address': payment_address,
-    })
-
-@csrf_exempt
-def deposit_callback(request):
-    payment_request_id = request.POST['payment_request_id']
-    payment_status = check_payment_status(payment_request_id)
-    if payment_status == 'completed':
-        user = User.objects.get(payment_request_id=payment_request_id)
-        user.balance += payment_status['amount']
-        user.save()
-    return HttpResponse(status=200)
