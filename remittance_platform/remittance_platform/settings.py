@@ -132,3 +132,6 @@ AUTH_USER_MODEL = 'remittance.User'
 STELLAR_NETWORK_PASSPHRASE = 'Public Global Stellar Network ; September 2015'
 STELLAR_HORIZON_URL = 'https://horizon.stellar.org'
 
+COINBASE_API_KEY = 'your_api_key'
+COINBASE_API_SECRET = 'your_api_secret'
+COINBASE_API_VERSION = 'YYYY-MM-DD'
